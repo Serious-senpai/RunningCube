@@ -1,11 +1,12 @@
+using System;
 using System.Diagnostics;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class MainObject : MonoBehaviour
 {
-    public float acceleration = 10f;
-    public float jumpForce = 210f;
+    public float acceleration;
+    public float jumpForce;
     public new Camera camera;
     public GameObject bullet;
     private int groundContacts = 0;
@@ -15,6 +16,11 @@ public class MainObject : MonoBehaviour
     public Rigidbody2D rigidBody
     {
         get => GetComponent<Rigidbody2D>();
+    }
+
+    public Vector3 velocity
+    {
+        get => rigidBody.velocity;
     }
 
     void Start()
@@ -31,7 +37,7 @@ public class MainObject : MonoBehaviour
 
         dy += Input.GetKey(KeyCode.W) ? 1 : 0;
 
-        dx *= acceleration;
+        dx *= acceleration * 50 / (Math.Abs(velocity.x) + 50);
         dy *= jumpForce;
         if (Input.GetKey(KeyCode.S))
         {
@@ -40,7 +46,7 @@ public class MainObject : MonoBehaviour
 
         if (groundContacts == 0)
         {
-            dy = 0;
+            dy /= 100;
         }
 
         if (dx != 0 || dy != 0)
@@ -54,7 +60,7 @@ public class MainObject : MonoBehaviour
             camera.transform.position.z
         );
 
-        if (timer.Elapsed.TotalSeconds - lastShot > 0.3 && Input.GetKeyDown(KeyCode.Mouse0))
+        if (timer.Elapsed.TotalSeconds - lastShot > 0.5 && Input.GetKeyDown(KeyCode.Mouse0))
         {
             var position = camera.ScreenToWorldPoint(Input.mousePosition);
             position.z = 0;

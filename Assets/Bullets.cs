@@ -22,7 +22,7 @@ public class Bullets : MonoBehaviour
     {
         Destroy(gameObject);
         var other = collision.collider != GetComponent<Collider2D>() ? collision.collider : collision.otherCollider;
-        if (!other.CompareTag("Terrain"))
+        if (!other.CompareTag("Terrain") && !other.CompareTag("Border"))
         {
             Destroy(other.gameObject);
         }
@@ -32,7 +32,7 @@ public class Bullets : MonoBehaviour
     {
         var obj = Object.Instantiate(bullet, from.transform);
         Physics2D.IgnoreCollision(from.GetComponent<Collider2D>(), obj.GetComponent<Collider2D>());
-        obj.GetComponent<Rigidbody2D>().AddForce(60 * (target - from.transform.position));
+        obj.GetComponent<Rigidbody2D>().AddForce(50 * (target - from.transform.position));
         return obj;
     }
 }

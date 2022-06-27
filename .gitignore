@@ -1,5 +1,8 @@
 # Custom ignores
 .vsconfig
+Assets/TextMesh Pro
+ProjectSettings/BurstAotSettings_StandaloneWindows.json
+ProjectSettings/CommonBurstAotSettings.json
 
 # This .gitignore file should be placed at the root of your Unity project directory
 #
