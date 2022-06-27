@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class MainObject : MonoBehaviour
@@ -63,7 +64,6 @@ public class MainObject : MonoBehaviour
         }
     }
 
-
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Terrain"))
@@ -78,5 +78,10 @@ public class MainObject : MonoBehaviour
         {
             groundContacts--;
         }
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
 }

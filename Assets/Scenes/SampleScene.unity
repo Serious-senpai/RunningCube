@@ -1408,9 +1408,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a5a8db7b8cce248abb1aaf8a322783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
-  acceleration: 10
-  jumpForce: 210
+  acceleration: 20
+  jumpForce: 800
   camera: {fileID: 519420031}
   bullet: {fileID: 7439657650764745059, guid: e8c327120dffb3c4d8f1b12525ed1226, type: 3}
 --- !u!1 &350768933
